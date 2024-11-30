@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: node
+    restart: always
+    build: .
+    ports:
+      - "3001:3000"
+    depends_on:
+      - mariadb
+    links:
+      - mariadb
+    volumes:
+      - .:/usr/src/app
+    
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: thebestbuy
+  
+    ports:
+        - "3307:3306"
