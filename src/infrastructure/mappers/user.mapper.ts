@@ -1,27 +1,23 @@
 import UserEntity from "../../domain/entities/users/user.entity";
 import { UserModel } from "../models/user/user.model";
+import { personEntityToPersonModel, personModelToPersonEntity } from "./person.mapper";
 
-export const userToUserModel = (user:UserEntity):UserModel => {
-    return  new UserModel(
-        user.name,
-        user.lastName,
-        user.role,
-        user.email,
-        user.password,
-        user.phone
-    );
-
+export const userEntityToUserModel = (userEntity:UserEntity) => {
+    return new UserModel(
+        userEntity.getUsername(),
+        userEntity.getPassword(),
+        userEntity.getRole(),
+        personEntityToPersonModel(userEntity.getPerson()),
+        userEntity.id, userEntity.createdAt, userEntity.updatedAt
+       );
+    
 }
-export const userModelToUser = (userModel:UserModel):UserEntity => {
-    return  new UserEntity(
-        userModel.getName(),
-        userModel.getLastName(),
-        userModel.getDni(),
-        userModel.getEmail(),
-        userModel.getPhone(),
+
+export const userModelToUserEntity = (userModel:UserModel) => {
+    return new UserEntity(
+        userModel.getUsername(),
         userModel.getPassword(),
-        userModel.getId(),
-        userModel.getCreatedAt(),
-        userModel.getUpdatedAt()
-    );
-}
+        userModel.getRole(),
+        personModelToPersonEntity(userModel.getPerson()),
+        userModel.id, userModel.createdAt, userModel.updatedAt);
+    }

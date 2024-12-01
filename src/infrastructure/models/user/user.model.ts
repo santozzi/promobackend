@@ -6,32 +6,34 @@ import {
   UpdateDateColumn,
   JoinColumn,
   OneToOne,
+  PrimaryColumn,
 } from "typeorm";
 import PersonModel from "./person.model";
+
 
 @Entity("users")
 export class UserModel {
   @PrimaryGeneratedColumn()
-  id: number;
+  public id: number;
 
   @Column()
-  username: string;
-
-  @Column({ name: "last_name", type: "varchar" })
-  password: string;
+  public username: string;
 
   @Column()
-  role: string;
+  public password: string;
+
+  @Column()
+  public role: string;
 
   @OneToOne(() => PersonModel)
   @JoinColumn({ name: "id_person" })
-  person: PersonModel;
+  public person: PersonModel; 
 
   @CreateDateColumn({ name: "created_at" })
-  createdAt: Date;
+  public createdAt: Date;
 
   @UpdateDateColumn({ name: "updated_at" })
-  updatedAt: Date;
+  public updatedAt: Date;
 
   constructor(
     username: string,
@@ -50,4 +52,65 @@ export class UserModel {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }
+
+
+
+  public getUsername(): string {
+    return this.username;
+  }
+
+  public getPassword(): string {
+    return this.password;
+  }
+
+  public getRole(): string {
+    return this.role;
+  }
+
+
+
+
+  public setId(id: number): void {
+    this.id = id;
+  }
+
+  public setUsername(username: string): void {
+    this.username = username;
+  }
+
+  public setPassword(password: string): void {
+    this.password = password;
+  }
+
+  public setRole(role: string): void {
+    this.role = role;
+  }
+
+
+
+  public setCreatedAt(createdAt: Date): void {
+    this.createdAt = createdAt;
+  }
+
+  public setUpdatedAt(updatedAt: Date): void {
+    this.updatedAt = updatedAt;
+  }
+
+  public getCreatedAt(): Date {
+    return this.createdAt;
+  }
+
+  public getUpdatedAt(): Date {
+    return this.updatedAt;
+  }
+
+  public getPerson(): PersonModel {
+    return this.person;
+  }
+
+  public setPerson(person: PersonModel): void {
+    this.person = person;
+  }
+  
+
 }

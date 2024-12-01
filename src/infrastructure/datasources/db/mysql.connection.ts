@@ -9,15 +9,15 @@ class DataSourceSingle  extends DataSource{
   private constructor(){
     super({
       type: 'mysql',
-      host: dataBaseConfig.MYSQL_HOST,
-      port: dataBaseConfig.MYSQL_PORT,
-      username:dataBaseConfig.MYSQL_USER,
-      password: dataBaseConfig.MYSQL_PASSWORD,
-      database: dataBaseConfig.MYSQL_DATABASE,
-      entities: ['src/infrastructure/models/*.ts'],
+      host: 'mariadb',
+      port: 3306,
+      username:'root',
+      password: '123456',
+      database: 'thebestbuy',
+      entities: ['src/infrastructure/models/user/*.ts'],
     });
   }
-  public static getInstance(): DataSourceSingle{
+  public static  getInstance(): DataSourceSingle {
     if(!DataSourceSingle.instance){
       DataSourceSingle.instance = new DataSourceSingle();
     }

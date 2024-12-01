@@ -2,18 +2,18 @@ import BaseEntity from "../base.entity";
 import PersonEntity from "./person.entity";
 
 
-class UserEntity extends BaseEntity{
+class UserEntity {
     
 
     constructor(
-        protected username: string, 
-        protected password:string, 
-        protected role:string,
-        protected person: PersonEntity,
-        id: number,
-        createdAt: Date,
-        updatedAt: Date
-      ){ super(id, createdAt, updatedAt); }
+        public username: string, 
+        public password:string, 
+        public role:string,
+        public person: PersonEntity,
+        public id: number = 0,
+        public createdAt: Date = new Date(),
+        public updatedAt: Date = new Date()
+      ){ }
      
       public getUsername(): string {
         return this.username;
@@ -33,6 +33,7 @@ class UserEntity extends BaseEntity{
         public setRole(role: string): void {
             this.role = role;
         }
+
         public getPerson(): PersonEntity {
             return this.person;
         }

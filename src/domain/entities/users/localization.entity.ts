@@ -6,9 +6,9 @@ class LocalizationEntity extends BaseEntity {
     protected country: string,
     protected state: string,
     protected city: string,
-    id: number,
-    createdAt: Date,
-    updatedAt: Date
+    id: number = 0,
+    createdAt: Date= new Date(),
+    updatedAt: Date = new Date()
     
 ){
     super(id, createdAt, updatedAt);

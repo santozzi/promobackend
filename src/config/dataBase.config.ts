@@ -9,6 +9,7 @@ export interface DataBaseConfig {
     MYSQL_DATABASE:string;
 }
 
+
 if(!process.env.MYSQL_HOST){
     throw new Error('MYSQL_HOST must be provided');
 }
@@ -24,6 +25,7 @@ if(!process.env.MYSQL_PASSWORD){
 if(!process.env.MYSQL_DATABASE){
     throw new Error('MYSQL_DATABASE must be provided');
 }
+
 
 
 const dataBaseConfig: DataBaseConfig = {

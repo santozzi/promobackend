@@ -1,13 +1,14 @@
-import UserDataSource from "../../domain/datasources/user.datasource";
-import UserEntity from "../../domain/entities/users/user.entity";
-import { userModelToUser, userToUserModel } from "../mappers/user.mapper";
-import { UserModel } from "../models/user/user.model";
-import DataSourceSingle from "./db/mysql.connection";
+import UserDataSource from "../../../../../domain/datasources/user.datasource";
+import UserEntity from "../../../../../domain/entities/users/user.entity";
+import { userEntityToUserModel, userModelToUserEntity } from "../../../../mappers/user.mapper";
+import { UserModel } from "../../../../models/user/user.model";
+import DataSourceSingle from "../../../db/mysql.connection";
 
-class UserMysqlTypeormImpDatasource implements UserDataSource {
+
+class UserImpDatasource implements UserDataSource {
+
   datasource = DataSourceSingle.getInstance();
   userRepository = this.datasource.getRepository(UserModel);
-
   // Ejemplo: Crear un nuevo usuario
 
   getUsers(): Promise<UserEntity[]> {
@@ -17,11 +18,9 @@ class UserMysqlTypeormImpDatasource implements UserDataSource {
     throw new Error("Method not implemented.");
   }
   async updateUserByDni(dni: string, user: UserEntity): Promise<void> {
-    
-    const usuario = await this.userRepository.findOne({ where: { role: dni } });
-    if (!usuario) {
+
       throw new Error("User not found");
-    }
+    
 
    // await this.userRepository.update(usuario.getId(), userToUserModel(user));
   }
@@ -32,10 +31,12 @@ class UserMysqlTypeormImpDatasource implements UserDataSource {
   getUserByDni(dni: string): Promise<UserEntity> {
     throw new Error("Method not implemented.");
   }
-  async addUser(inscripto: UserEntity): Promise<UserEntity> {
-    const newUser = this.userRepository.create(userToUserModel(inscripto));
-    const user = await this.userRepository.save(newUser);
-    return userModelToUser(user);
+
+  async add(user: UserEntity): Promise<UserEntity> {
+    const usuario = await this.userRepository.save(userEntityToUserModel(user));
+
+    return userModelToUserEntity(usuario);
+ 
   }
 
   deleteUser(id: number): Promise<void> {
@@ -45,4 +46,4 @@ class UserMysqlTypeormImpDatasource implements UserDataSource {
     throw new Error("Method not implemented.");
   }
 }
-export default UserMysqlTypeormImpDatasource;
+export default UserImpDatasource;

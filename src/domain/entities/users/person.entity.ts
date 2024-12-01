@@ -12,9 +12,9 @@ class PersonEntity extends BaseEntity{
         protected gender:string,
         protected localization: LocalizationEntity,
        
-        id: number,
-        createdAt: Date,
-        updatedAt: Date
+        id: number=0,
+        createdAt: Date= new Date(),
+        updatedAt: Date= new Date()
     ) {
         super(id, createdAt, updatedAt);
     }
