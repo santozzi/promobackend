@@ -1,5 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn} from 'typeorm';
-import LocalizationModel  from './localization.model';
+
 
 @Entity('people')
 export class PersonModel{
@@ -23,9 +23,13 @@ export class PersonModel{
   @Column()
    gender: string;
 
-  @OneToOne(() => LocalizationModel)
-  @JoinColumn({name: 'id_localization'})
-    localization: LocalizationModel; 
+   @Column()
+   country: string;
+   @Column()
+   state: string;
+   @Column()
+   city: string;
+
 
   @CreateDateColumn({name: 'created_at'})
     createdAt: Date
@@ -35,7 +39,7 @@ export class PersonModel{
   
   
   
-  constructor(name: string, lastName: string, email: string, phone: string, avatar: string,gender:string, localization:LocalizationModel, id: number = 0, createdAt: Date = new Date(), updatedAt: Date = new Date()) {
+  constructor(name: string, lastName: string, email: string, phone: string, avatar: string,gender:string, country:string, state:string, city:string, id: number = 0, createdAt: Date = new Date(), updatedAt: Date = new Date()) {
     this.id = id;
     this.name = name;
     this.lastName = lastName;
@@ -44,7 +48,9 @@ export class PersonModel{
     this.phone = phone;
     this.avatar = avatar;
     this.gender = gender;
-    this.localization = localization;
+    this.country = country;
+    this.state = state;
+    this.city = city;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }

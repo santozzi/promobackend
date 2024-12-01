@@ -1,6 +1,6 @@
 import PersonEntity from "../../domain/entities/users/person.entity";
 import PersonModel from "../models/user/person.model";
-import { localizationEntityToLocalizationModel, localizationModelToLocalizationEntity } from "./localization.mapper";
+
 
 export const personModelToPersonEntity = (personModel:PersonModel) => {
     return new PersonEntity(
@@ -10,7 +10,9 @@ export const personModelToPersonEntity = (personModel:PersonModel) => {
         personModel.phone,
         personModel.avatar,
         personModel.gender,
-        localizationModelToLocalizationEntity(personModel.localization), 
+        personModel.country,
+        personModel.state,
+        personModel.city, 
         personModel.id, personModel.createdAt, personModel.updatedAt);
 }
 
@@ -22,6 +24,8 @@ export const personEntityToPersonModel = (personEntity:PersonEntity) => {
         personEntity.getPhone(),
         personEntity.getAvatar(),
         personEntity.getGender(),
-        localizationEntityToLocalizationModel(personEntity.getLocalization()), 
+        personEntity.getCountry(),
+        personEntity.getState(),
+        personEntity.getCity(), 
         personEntity.id, personEntity.createdAt, personEntity.updatedAt);
 }

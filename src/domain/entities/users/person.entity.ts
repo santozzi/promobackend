@@ -1,5 +1,5 @@
 import BaseEntity from "../base.entity";
-import LocalizationEntity from "./localization.entity";
+
 
 class PersonEntity extends BaseEntity{
 
@@ -10,7 +10,9 @@ class PersonEntity extends BaseEntity{
         protected phone: string,
         protected avatar:string,
         protected gender:string,
-        protected localization: LocalizationEntity,
+        protected country: string,
+        protected state: string,
+        protected city: string,
        
         id: number=0,
         createdAt: Date= new Date(),
@@ -37,12 +39,7 @@ class PersonEntity extends BaseEntity{
     public setGender( gender: string): void {
         this.gender = gender;
     }
-    public getLocalization(): LocalizationEntity {
-        return this.localization;
-    }
-    public setLocalization(localization: LocalizationEntity): void {
-        this.localization = localization;
-    }
+
 
     public getLastName(): string {
         return this.lastName;
@@ -63,6 +60,24 @@ class PersonEntity extends BaseEntity{
         this.phone = phone;
     }
 
+    public getCountry(): string {
+        return this.country;
+    }
+    public setCountry(country: string): void {
+        this.country = country;
+    }
+    public getState(): string {
+        return this.state;
+    }
+    public setState(state: string): void {
+        this.state = state;
+    }
+    public getCity(): string {
+        return this.city;
+    }
+    public setCity(city: string): void {
+        this.city = city;
+    }
 
 }
 export default PersonEntity;
