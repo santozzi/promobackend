@@ -2,13 +2,12 @@
 import "reflect-metadata"
 import DataSourceSingle from "../infrastructure/datasources/db/mysql.connection";
 import Server from "./server";
-import PersonEntity from "../domain/entities/users/person.entity";
-import PersonDatasorceImp from "../infrastructure/datasources/user/typeorm/mysql/personImp.datasource";
-import UserEntity from "../domain/entities/users/user.entity";
-import UserImpDatasource from "../infrastructure/datasources/user/typeorm/mysql/userImp.datasource";
-import PersonRepositoryImp from "../infrastructure/repositories/user/person.repository";
+import UserEntity from "../domain/entities/user.entity";
 
-import UserRepository from "../infrastructure/repositories/user/user.repository";
+import UserRepositoryImp from "../infrastructure/repositories/user.repository";
+import UserDatasorceImp from "../infrastructure/datasources/user/typeorm/mysql/userImp.datasource";
+
+
 
 
 
@@ -48,9 +47,9 @@ console.log("Hola mundo");
     
 
     //crear nueva persona
-    const personEntity = new PersonEntity("Sergio","Gonzalez","masculino@gmail.com","123456789","avatar","masculino","Argentina","Buenos Aires","Lanus");
-    const personDatasource = new PersonDatasorceImp();
-    const personRepository = new PersonRepositoryImp(personDatasource);
+    const personEntity = new UserEntity("Sergio","Gonzalez","masculino@gmail.com","123456789","avatar","masculino","Argentina","Buenos Aires","Lanus","sergio","1234","admin");
+    const personDatasource = new UserDatasorceImp();
+    const personRepository = new UserRepositoryImp(personDatasource);
     const person = await personRepository.add(personEntity);
 
 
@@ -60,11 +59,8 @@ console.log("Hola mundo");
     //crear persona
     //const  person = await personRepository.save(personModel);
 
-    const userEntity = new UserEntity("sergio","1234","admin",person);
-    const userDataSource = new UserImpDatasource();
-    const userRepository = new UserRepository(userDataSource);
-    const user = await userRepository.add(userEntity);
-    console.log(user);
+  
+    console.log(person);
     
 
     //crear el repositorio

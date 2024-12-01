@@ -1,8 +1,8 @@
 import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn} from 'typeorm';
 
 
-@Entity('people')
-export class PersonModel{
+@Entity('users')
+export class UserModel{
   @PrimaryGeneratedColumn()  
   id: number;
 
@@ -30,6 +30,15 @@ export class PersonModel{
    @Column()
    city: string;
 
+   @Column()
+   username: string;
+ 
+   @Column()
+   password: string;
+ 
+   @Column()
+   role: string;
+
 
   @CreateDateColumn({name: 'created_at'})
     createdAt: Date
@@ -39,7 +48,7 @@ export class PersonModel{
   
   
   
-  constructor(name: string, lastName: string, email: string, phone: string, avatar: string,gender:string, country:string, state:string, city:string, id: number = 0, createdAt: Date = new Date(), updatedAt: Date = new Date()) {
+  constructor(name: string, lastName: string, email: string, phone: string, avatar: string,gender:string, country:string, state:string, city:string, username:string, password:string, role:string,  id: number = 0, createdAt: Date = new Date(), updatedAt: Date = new Date()) {
     this.id = id;
     this.name = name;
     this.lastName = lastName;
@@ -51,9 +60,12 @@ export class PersonModel{
     this.country = country;
     this.state = state;
     this.city = city;
+    this.username = username;
+    this.password = password;
+    this.role = role;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }
  
 }
-export default PersonModel;
+export default UserModel;

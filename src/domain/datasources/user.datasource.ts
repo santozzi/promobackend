@@ -1,11 +1,10 @@
 
-import UserEntity from "../entities/users/user.entity";
+import UserEntity from "../entities/user.entity";
+
+
 interface UserDataSource {
-    getUsers(): Promise<UserEntity[]>;
-    getUser(id: number): Promise<UserEntity>;
-    add(usuario: UserEntity): Promise<UserEntity>;
-    deleteUser(id: number): Promise<void>;
-    updateUser(usuario: UserEntity): Promise<void>;
+    add(user: UserEntity): Promise<UserEntity>;
+
 
 }
 export default UserDataSource;
