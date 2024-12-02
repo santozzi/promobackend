@@ -10,6 +10,9 @@ class UserRepositoryImp implements UserRepository{
     constructor(personDataSource: UserDataSource){
         this.userDataSource = personDataSource;
     }
+    getUserById(id: number): Promise<UserEntity> {
+       return this.userDataSource.getUserById(id);
+    }
     getAll(): Promise<UserEntity[]> {
         return this.userDataSource.getAll();
     }
@@ -17,6 +20,7 @@ class UserRepositoryImp implements UserRepository{
     add(user: UserEntity): Promise<UserEntity> {
        return this.userDataSource.add(user);
     }
+
 
 }
 export default UserRepositoryImp;

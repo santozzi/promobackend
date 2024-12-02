@@ -26,3 +26,13 @@ export const getUsers = async (req: Request, res: Response) => {
         res.status(500).json({ message: error });
     }
 }
+
+export const getUserById = async (req: Request, res: Response) => {
+    try {
+        const id = parseInt(req.params.id);
+        const user = await personRepository.getUserById(id);
+        res.status(200).json(userToUserDto(user));
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
+}
