@@ -5,6 +5,7 @@ import UserModel from "../../../../models/user.model";
 import DataSourceSingle from "../../../db/mysql.connection";
 
 class UserDatasorceImp implements UserDataSource {
+
     datasource = DataSourceSingle.getInstance();
     userRepository = this.datasource.getRepository(UserModel);
 
@@ -13,6 +14,9 @@ class UserDatasorceImp implements UserDataSource {
         return personModelToPersonEntity(persona);
     }
 
+    async getAll(): Promise<UserEntity[]> {
+        return (await this.userRepository.find()).map(personModelToPersonEntity);
+    }
 
 
 
