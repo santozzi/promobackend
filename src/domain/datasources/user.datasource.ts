@@ -6,6 +6,7 @@ interface UserDataSource {
     add(user: UserEntity): Promise<UserEntity>;
     getAll(): Promise<UserEntity[]>;
     getUserById(id: number): Promise<UserEntity>;
+    getUserByEmail(email: string): Promise<UserEntity>;
 
 
 }

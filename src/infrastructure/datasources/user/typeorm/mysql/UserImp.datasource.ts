@@ -5,6 +5,22 @@ import UserModel from "../../../../models/user.model";
 import DataSourceSingle from "../../../db/mysql.connection";
 
 class UserDatasorceImp implements UserDataSource {
+   async getUserByEmail(email: string): Promise<UserEntity> {
+        try{
+            const user =await this.userRepository.findOne(
+              {where:{email}}
+            );
+            if(user==null){
+              throw new Error("User not found");
+            }else{
+              return  userModelToUserEntity(user);
+            }
+          } catch (error) {
+              console.log(error);
+              //TODO: Implementar manejo de errores
+              throw error;
+          }
+    }
     async getUserById(id: number): Promise<UserEntity> {
         try{
           const user =await this.userRepository.findOne(

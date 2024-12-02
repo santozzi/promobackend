@@ -5,5 +5,6 @@ export interface UserRepository {
    add(localization: UserEntity): Promise<UserEntity>;
    getAll(): Promise<UserEntity[]>;
    getUserById(id: number): Promise<UserEntity>;
+   getUserByEmail(email: string): Promise<UserEntity>;
 }
 export default UserRepository ;

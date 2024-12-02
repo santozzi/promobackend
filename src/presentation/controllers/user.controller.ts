@@ -36,3 +36,21 @@ export const getUserById = async (req: Request, res: Response) => {
         res.status(500).json({ message: error });
     }
 }
+interface query {
+    email?:string;
+}
+export const getUserByEmail = async (req: Request, res: Response) => {
+    try {
+        const {email} = (req.query) as unknown as query;
+        console.log('este es el email: ',email);
+        
+         if(!email){
+            throw new Error("User not found");
+        }
+        
+        const user = await personRepository.getUserByEmail(email);
+        res.status(200).json(userToUserDto(user));
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
+}
