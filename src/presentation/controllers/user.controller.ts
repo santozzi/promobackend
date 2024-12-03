@@ -23,7 +23,7 @@ export const getUsers = async (req: Request, res: Response) => {
         const users = await personRepository.getAll();
         res.status(200).json(users.map(userToUserDto));
     } catch (error) {
-        res.status(500).json({ message: error });
+        res.status(500).json({ message: "este es un error de get users" });
     }
 }
 
@@ -50,6 +50,21 @@ export const getUserByEmail = async (req: Request, res: Response) => {
         
         const user = await personRepository.getUserByEmail(email);
         res.status(200).json(userToUserDto(user));
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
+}
+export const saveList = async (req: Request, res: Response) => {
+    try {
+        const usersDto = req.body as UserDto[];
+        const users = usersDto.map(userDtoToUser);
+        console.log(users);
+        
+        for (const user of users) {
+            await personRepository.add(user);
+        } 
+        
+        res.status(200).json({message: 'Users saved'});
     } catch (error) {
         res.status(500).json({ message: error });
     }

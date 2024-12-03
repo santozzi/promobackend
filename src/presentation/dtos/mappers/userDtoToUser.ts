@@ -14,7 +14,7 @@ export const userDtoToUser = (userDto:UserDto) => {
         userDto.location.city,
         userDto.login.username,
         userDto.login.password,
-        userDto.login.salt,
+        userDto.login.role,
         
      );
 }
@@ -35,7 +35,7 @@ export const userToUserDto = (user:UserEntity) => {
         {
             username:user.getUsername(),
             password:user.getPassword(),
-            salt:user.getRole()
+            role:user.getRole()
         },
         user.getPhone(),
         {

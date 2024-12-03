@@ -50,6 +50,7 @@ export class UserModel{
   
   constructor(name: string, lastName: string, email: string, phone: string, avatar: string,gender:string, country:string, state:string, city:string, username:string, password:string, role:string,  id: number = 0, createdAt: Date = new Date(), updatedAt: Date = new Date()) {
     this.id = id;
+    
     this.name = name;
     this.lastName = lastName;
 

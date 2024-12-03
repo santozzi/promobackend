@@ -12,7 +12,7 @@ export class Login{
     constructor(
         public username:string,
         public password:string,
-        public salt:string,
+        public role:string,
     ){}
 }
 export class Location{

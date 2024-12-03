@@ -7,7 +7,7 @@ interface UserDataSource {
     getAll(): Promise<UserEntity[]>;
     getUserById(id: number): Promise<UserEntity>;
     getUserByEmail(email: string): Promise<UserEntity>;
+    
 
-
-}
+}   
 export default UserDataSource;

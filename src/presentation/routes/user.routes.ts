@@ -1,10 +1,11 @@
 //routes to user controller
 
 import { Router } from 'express';
-import { save,getUsers, getUserById, getUserByEmail } from '../controllers/user.controller';
+import { save,getUsers, getUserById, getUserByEmail,saveList } from '../controllers/user.controller';
 
 
 const userRoute:Router = Router();
+userRoute.post('/list',saveList);
 userRoute.get('/params/',getUserByEmail);
 userRoute.post('/user',save);
 userRoute.get('/',getUsers);

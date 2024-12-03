@@ -44,12 +44,36 @@ class UserDatasorceImp implements UserDataSource {
     userRepository = this.datasource.getRepository(UserModel);
 
     async add(user: UserEntity): Promise<UserEntity> {
-        const persona = await this.userRepository.save(userEntityToUserModel(user));
-        return userModelToUserEntity(persona);
+        try{
+          const persona = await this.userRepository.save(userEntityToUserModel(user));
+          return userModelToUserEntity(persona);
+        }catch(error){
+            console.log(error);
+            throw error;
+        }
+ 
     }
 
     async getAll(): Promise<UserEntity[]> {
-        return (await this.userRepository.find()).map(userModelToUserEntity);
+        try{
+           const users = await this.userRepository.find();
+         
+           
+            return users.map( (userModel:UserModel)=>{
+                if(userModel==null || userModel==undefined|| isNaN(userModel.id)){
+                    throw new Error("User not found");
+                }
+                const user =  userModelToUserEntity(userModel);
+                if(user==null|| user==undefined|| isNaN(user.getId())){
+                    throw new Error("User not found");
+                }
+              return user;
+            });
+        }catch(error){
+            console.log("Este es el error");
+            throw error;
+        }
+       
     }
 
 

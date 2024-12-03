@@ -3,6 +3,9 @@ import UserModel from "../models/user.model";
 
 
 export const userModelToUserEntity = (userModel:UserModel) => {
+
+    
+    
     return new UserEntity(
         userModel.name, 
         userModel.lastName, 
@@ -20,6 +23,7 @@ export const userModelToUserEntity = (userModel:UserModel) => {
 }
 
 export const userEntityToUserModel = (userEntity:UserEntity) => {
+   
     return new UserModel(
         userEntity.getName(), 
         userEntity.getLastName(), 
