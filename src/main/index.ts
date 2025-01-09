@@ -3,14 +3,6 @@ import "reflect-metadata"
 import DataSourceSingle from "../infrastructure/datasources/db/mysql.connection";
 import Server from "./server";
 
-
-
-
-
-
-
-
-
 //Configura middlewares globales y la inicialización general
 console.log("Hola mundo");
 
@@ -18,6 +10,7 @@ console.log("Hola mundo");
   try {
     //base de datos
     const data = DataSourceSingle.getInstance();
+
     await data.initialize();
     
     // Inicializa el servidor

@@ -1,15 +1,20 @@
 //routes to user controller
 
 import { Router } from 'express';
-import { save,getUsers, getUserById, getUserByEmail,saveList } from '../controllers/user.controller';
+import { save,getUsers, getUserById, getUserByEmail,saveList,getUsersPaginated,signIn } from '../controllers/user.controller';
+import { verifyTokenMiddleware } from '../../infrastructure/middlewares/verifyToken.middleware';
 
 
 const userRoute:Router = Router();
-userRoute.post('/list',saveList);
-userRoute.get('/params/',getUserByEmail);
-userRoute.post('/user',save);
-userRoute.get('/',getUsers);
-userRoute.get('/:id',getUserById);
+userRoute.get('/filter/',verifyTokenMiddleware,getUsersPaginated);
+userRoute.post('/list',verifyTokenMiddleware,saveList);
+userRoute.get('/params/',verifyTokenMiddleware,getUserByEmail);
+userRoute.post('/user',verifyTokenMiddleware,save);
+userRoute.post('/login',signIn);
+//userRoute.post('/register',savregisterOne);
+userRoute.get('/:id',verifyTokenMiddleware,getUserById);
+userRoute.get('/',verifyTokenMiddleware,getUsers);
+
 
  
 

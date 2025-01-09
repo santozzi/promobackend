@@ -15,8 +15,11 @@ class DataSourceSingle  extends DataSource{
       password:   dataBaseConfig.MYSQL_PASSWORD,
       database: dataBaseConfig.MYSQL_DATABASE,
       entities: ['src/infrastructure/models/*.ts'],
+      synchronize: true,
     });
   }
+
+
   public static  getInstance(): DataSourceSingle {
     if(!DataSourceSingle.instance){
       DataSourceSingle.instance = new DataSourceSingle();
@@ -25,6 +28,7 @@ class DataSourceSingle  extends DataSource{
   }
 }
 export default DataSourceSingle;
+
 
 
 

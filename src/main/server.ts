@@ -1,6 +1,7 @@
 import express from 'express';
 //Routes
 import userRoute from './../presentation/routes/user.routes';
+import categoryRoute from './../presentation/routes/category.routes';
 import cors from 'cors';
 
 class Server {
@@ -21,7 +22,8 @@ class Server {
         this.app.use( cors());
     }
     routes(){
-        this.app.use(userRoute);
+        this.app.use("/users",userRoute);
+        this.app.use( "/categories",categoryRoute);
 
     }
     start(callback: () => void) {
