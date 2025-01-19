@@ -3,23 +3,21 @@
 class UserEntity{
 
     constructor(
-        protected name: string,
-        protected lastName: string,
-        protected email: string,
-        protected phone: string,
-        protected avatar:string,
-        protected gender:string,
-        protected country: string,
-        protected state: string,
-        protected city: string,
-
-        protected username: string, 
-        protected password:string, 
-        protected role:string,
-       
-        protected id: number=0,
-        protected createdAt: Date= new Date(),
-        protected updatedAt: Date= new Date()
+        public name: string,
+        public  lastName: string,
+        public  email: string,
+        public  phone: string,
+        public  avatar:string,
+        public  gender:string,
+        public  country: string,
+        public  state: string,
+        public  city: string,
+        public  username: string, 
+        public  password:string, 
+        public  role:string,
+        public  id: number=0,
+        public  createdAt: Date= new Date(),
+        public  updatedAt: Date= new Date()
     ) {
         
     }
@@ -88,7 +86,7 @@ class UserEntity{
         this.username = username;
     }
     public getPassword(): string {
-        return this.password;
+        return this.password ;
     }
     public setPassword(password: string): void {
         this.password = password;

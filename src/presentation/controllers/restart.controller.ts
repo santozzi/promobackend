@@ -1,36 +1,8 @@
-import 'reflect-metadata';
-import { DataSource } from 'typeorm';
-import dataBaseConfig from '../../../config/dataBase.config';
-import path from 'path';
-
-import * as fs from 'fs';
+import {Response,Request} from 'express';
+import DataSourceSingle from '../../infrastructure/datasources/db/mysql.connection';
 
 
-class DataSourceSingle  extends DataSource{
-  private static instance: DataSourceSingle;
-
-  private constructor(){
-    super({
-      type: 'mysql',
-      host: dataBaseConfig.MYSQL_HOST,
-      port: dataBaseConfig.MYSQL_PORT,
-      username: dataBaseConfig.MYSQL_USER,
-      password:   dataBaseConfig.MYSQL_PASSWORD,
-      database: dataBaseConfig.MYSQL_DATABASE,
-      entities: ['src/infrastructure/models/*.ts'],
-      synchronize: true,
-    });
-  }
- 
-
-  public static  getInstance(): DataSourceSingle {
-    if(!DataSourceSingle.instance){
-      DataSourceSingle.instance = new DataSourceSingle();
-    }
-    return DataSourceSingle.instance;
-  }
-
-  public async restartData(filePath: string): Promise<void> {
+export const restart = async (req: Request, res: Response) => {
     try {
       
         // Inicializa la conexión a la base de datos
@@ -39,7 +11,7 @@ class DataSourceSingle  extends DataSource{
         }
 
         // Lee el contenido del archivo SQL
-        const sqlFilePath = path.resolve(__dirname, filePath);
+       
         const deleteUsers = `DELETE FROM users`;
         const deleteProducts = `DELETE FROM products`;
         const deleteCategories = `DELETE FROM categories`;
@@ -167,16 +139,9 @@ class DataSourceSingle  extends DataSource{
         await DataSourceSingle.getInstance().query(products);
         await DataSourceSingle.getInstance().query(users);
 
-       console.log('Archivo .sql ejecutado exitosamente.');
+       console.log('La base de datos ha sido reiniciada con éxito');
+       res.status(202).json({message: 'La base de datos ha sido reiniciada con éxito'});
     } catch (error) {
-        console.error('Error al ejecutar el archivo .sql:', error);
+       res.status(500).json({ message: error });
     } 
 }
-
-}
- 
-export default DataSourceSingle;
-
-
-
-

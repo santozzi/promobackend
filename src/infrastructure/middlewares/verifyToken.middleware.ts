@@ -27,6 +27,7 @@ export const verifyTokenMiddleware = async (req:Request, res:Response, next:Next
     //guardar en el usuario que se verificó ok
     const userId = (decoded as TokenData).id;
     const user = await userRepository.getUserById(userId);
+   
     (req as RequestExtended).user = user as UserEntity;
     
     

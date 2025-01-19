@@ -14,7 +14,7 @@ class UserDatasorceImp implements UserDataSource {
   datasource = DataSourceSingle.getInstance();
   userRepository = this.datasource.getRepository(UserModel);
 
-  async update(id: number, user: UserEntity){
+  async update(id: number, user: Partial<Omit<UserEntity, 'id'>>){
     try{
       const usuario =await this.userRepository.findOne(
         {where:{id}}
@@ -22,8 +22,10 @@ class UserDatasorceImp implements UserDataSource {
       if(usuario==null){
         throw new Error("User not found");
       }
-      
-      await this.userRepository.update(id, userEntityToUserModel(user));
+      if(user != undefined && user.password != undefined){
+         user.password = bcrypt.hashSync(user.password, 10);
+      }
+      await this.userRepository.update(id, user);
  
     }catch(error){
         console.log(error);
@@ -129,17 +131,19 @@ class UserDatasorceImp implements UserDataSource {
         try{
            const users = await this.userRepository.find();
          
-           
-            return users.map( (userModel:UserModel)=>{
-                if(userModel==null || userModel==undefined|| isNaN(userModel.id)){
-                    throw new Error("User not found");
-                }
-                const user =  userModelToUserEntity(userModel);
-                if(user==null|| user==undefined|| isNaN(user.getId())){
-                    throw new Error("User not found");
-                }
-              return user;
-            });
+           const usersAll = users.map( (userModel:UserModel)=>{
+            if(userModel==null || userModel==undefined|| isNaN(userModel.id)){
+                throw new Error("User not found");
+            }
+            const user =  userModelToUserEntity(userModel);
+            if(user==null|| user==undefined|| isNaN(user.getId())){
+                throw new Error("User not found");
+            }
+          return user;
+        });
+        
+        
+            return usersAll;
         }catch(error){
             console.log("Este es el error");
             throw error;

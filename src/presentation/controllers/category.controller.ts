@@ -10,6 +10,7 @@ export const update = async (req: Request, res: Response) => {
         const categoryDto = req.body ;
         const id = parseInt(req.params.id);
         categoryRepository.update(id, categoryDto);
+        //TODO: mejorar el update
         res.status(200).json({ message: "category updated" });
     } catch (error) {
         res.status(500).json({ message: error });

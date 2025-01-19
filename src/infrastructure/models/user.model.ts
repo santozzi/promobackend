@@ -17,7 +17,7 @@ export class UserModel{
 
   @Column()
    phone: string;
-  @Column()
+  @Column('text')
    avatar: string;
 
   @Column()
@@ -33,7 +33,7 @@ export class UserModel{
    @Column()
    username: string;
  
-   @Column()
+   @Column('text')
    password: string;
  
    @Column()

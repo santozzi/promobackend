@@ -6,7 +6,7 @@ title:string;
 price:number;
 description:string;
 images:string[];
-creationAt?:Date;
+createdAt?:Date;
 updatedAt?:Date;
 category:CategoryEntity;
 
@@ -17,7 +17,7 @@ constructor(
     images:string[],
     category:CategoryEntity,
     id:number=0,
-    creationAt:Date=new Date()
+    createdAt:Date=new Date()
     ,updatedAt:Date=new Date()){
     this.id=id;
     this.title=title;
@@ -25,7 +25,7 @@ constructor(
     this.description=description;
     this.images=images;
     this.category=category;
-    this.creationAt=creationAt;
+    this.createdAt=createdAt;
     this.updatedAt=updatedAt;
 
 }

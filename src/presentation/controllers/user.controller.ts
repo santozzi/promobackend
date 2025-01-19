@@ -6,14 +6,24 @@ import { userDtoToUser, userToUserDto } from '../dtos/mappers/userDtoToUser';
 const personDatasource = new UserDatasorceImp();
 const personRepository = new UserRepositoryImp(personDatasource);
 
-
+export const update = async (req: Request, res: Response) => {
+    try {
+        const userDto = req.body ;
+        const id = parseInt(req.params.id);
+        personRepository.update(id, userDto);
+        //TODO: mejorar el update
+        res.status(200).json({ message: "user updated" });
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
+}
 export const save = async (req: Request, res: Response) => {
     try {
         const userDto = req.body as UserDto;
         const personEntity = userDtoToUser(userDto);
         const person = await personRepository.add(personEntity);
             
-        res.status(200).json(userToUserDto(person));
+        res.status(202).json(userToUserDto(person));
     } catch (error) {
         res.status(500).json({ message: error });
     }
@@ -21,7 +31,9 @@ export const save = async (req: Request, res: Response) => {
 export const getUsers = async (req: Request, res: Response) => {
     try {
         const users = await personRepository.getAll();
-        res.status(200).json(users.map(userToUserDto));
+        const usersDto = users.map(userToUserDto);
+     
+        res.status(200).json(usersDto);
     } catch (error) {
         res.status(500).json({ message: "este es un error de get users" });
     }
@@ -89,8 +101,8 @@ export const getUsersPaginated = async (req: Request, res: Response) => {
 export const signIn = async (req: Request, res: Response) => {
     try {
        const {username, password} = req.body;
-       const user = await personRepository.signin(username, password);
-       res.status(200).json(user);
+       const token = await personRepository.signin(username, password);
+       res.status(200).json(token);
     } catch (error) {
         if(error instanceof Error)
             res.status(401).json({ message: error.message});
