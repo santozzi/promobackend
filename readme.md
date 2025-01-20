@@ -1,3 +1,32 @@
+## Instalación
+
+### Con Docker  <img src="https://skillicons.dev/icons?i=docker" width="15px"/>
+
+ 1. Instalar Docker
+ 2. Crea un archivo `.env` en la raíz del proyecto y añade las siguientes variables:
+  ```env
+     # docker host
+     MYSQL_HOST=mariadb
+     # local host
+     # MYSQL_HOST=localhost
+     MYSQL_PORT=3306
+     MYSQL_USER=root
+     MYSQL_PASSWORD=123456
+     MYSQL_DATABASE=thebestbuy
+
+     SECRET_WORD=(palabra secreta)
+```
+ 3. Ejecutar Docker
+ 4. En la ruta del proyecto ejecutar el comando:
+
+ ```bash
+    docker compose up --build
+```
+ 5. Una vez iniciado se tendra la base de datos vacia, para reinicar la base con los datos predeterminado ir al siguiente endopoint:
+
+```bash
+   http://(direccion ip local - localhost):3001/restart
+```
 ## Uso
 
 Con el servidor en funcionamiento, puedes utilizar herramientas como Postman o cURL para interactuar con la API. A continuación se describen algunos de los endpoints disponibles:
