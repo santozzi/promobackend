@@ -1,6 +1,6 @@
 ## Instalación
 
-### Con Docker  <img src="https://skillicons.dev/icons?i=docker" width="15px"/>
+### Con Docker  <img src="https://skillicons.dev/icons?i=docker" width="25px"/>
 
  1. Instalar Docker
  2. Crea un archivo `.env` en la raíz del proyecto y añade las siguientes variables:
@@ -23,6 +23,33 @@
     docker compose up --build
 ```
  5. Una vez iniciado se tendra la base de datos vacia, para reinicar la base con los datos predeterminado ir al siguiente endopoint:
+
+```bash
+   http://localhost:3001/restart
+```
+
+### Con Node y MySQL <img src="https://skillicons.dev/icons?i=nodejs" width="25px"/><img src="https://skillicons.dev/icons?i=mysql" width="25px"/>
+ 1. Instalar MySQL, configurarlo para el ```puerto 3007```,  sea el predeterminado, password de root 123456, y crear una base de datos llamada ```thebestbuy```
+
+ 2. Crea un archivo `.env` en la raíz del proyecto y añade las siguientes variables:
+  ```env
+     # docker host
+     #MYSQL_HOST=localhost:3
+     # local host
+     MYSQL_HOST=localhost
+     MYSQL_PORT=3306
+     MYSQL_USER=root
+     MYSQL_PASSWORD=123456
+     MYSQL_DATABASE=thebestbuy
+
+     SECRET_WORD=(palabra secreta)
+```
+ 3. En la ruta del proyecto ejecutar el comando:
+
+ ```bash
+    npm install
+```
+ 4. Una vez iniciado se tendra la base de datos vacia, para reinicar la base con los datos predeterminado ir al siguiente endopoint:
 
 ```bash
    http://localhost:3001/restart
