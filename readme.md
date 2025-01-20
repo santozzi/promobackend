@@ -34,7 +34,7 @@
  2. Crea un archivo `.env` en la raíz del proyecto y añade las siguientes variables:
   ```env
      # docker host
-     #MYSQL_HOST=localhost:3
+     #MYSQL_HOST=localhost
      # local host
      MYSQL_HOST=localhost
      MYSQL_PORT=3306
@@ -60,8 +60,8 @@ Con el servidor en funcionamiento, puedes utilizar herramientas como Postman o c
 
 ### Usuarios
 
-- `POST /users/login`: Autenticar un usuario y obtener un token JWT.
-- `GET /users/`: Obtener la lista de usuarios (requiere autenticación).
+- **`POST`** /users/login: Autenticar un usuario y obtener un token JWT.
+- <span style="color: green; font-weight: bold;">GET</span>`/users/`: Obtener la lista de usuarios (requiere autenticación).
 - `GET /users/user/:id`: Obtener los detalles de un usuario por ID (requiere autenticación).
 - `PUT users/:id`: Actualizar los detalles de un usuario por ID (requiere autenticación).
 
