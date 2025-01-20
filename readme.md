@@ -25,7 +25,7 @@
  5. Una vez iniciado se tendra la base de datos vacia, para reinicar la base con los datos predeterminado ir al siguiente endopoint:
 
 ```bash
-   http://(direccion ip local - localhost):3001/restart
+   http://localhost:3001/restart
 ```
 ## Uso
 
