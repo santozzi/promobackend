@@ -28,7 +28,7 @@
    http://localhost:3001/restart
 ```
 
-### Con Node y MySQL <img src="https://skillicons.dev/icons?i=nodejs" width="25px"/><img src="https://skillicons.dev/icons?i=mysql" width="25px"/>
+### Con Node y MySQL <img src="https://skillicons.dev/icons?i=nodejs" width="25px"/><img src="https://skillicons.dev/icons?i=mysql" width="25px"/> ( NO ESTA PROBADO )
  1. Instalar MySQL, configurarlo para el ```puerto 3007```,  sea el predeterminado, password de root 123456, y crear una base de datos llamada ```thebestbuy```
 
  2. Crea un archivo `.env` en la raíz del proyecto y añade las siguientes variables:
